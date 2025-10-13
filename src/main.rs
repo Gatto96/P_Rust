@@ -9,11 +9,19 @@ fn main() {
     //     i+=1;
     // }
 
-    for i in 1..=10{
-        println!("i={}",i);
+    // for i in 1..=10{
+    //     println!("i={}",i);
 
+    // }
+
+    // for i in (1..=5).rev(){
+    //     println!("{}",i);
+    // }
+
+    let number =vec![1,2,3,4,5];
+    for n in number{
+        println!("{}",n);
     }
-
 
 
 
