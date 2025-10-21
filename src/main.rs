@@ -1,8 +1,42 @@
 use std::io;
 
+fn sum(numbers: &[i32])-> i32{
+    let mut result=0;
+    for number in numbers{
+        result+= number;
+    }
+    result
+}
+
 
 fn main() {
     println!("Hello, rusters!");
+
+    println!("Please enter a numbers to sum: ");
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).expect("failed to read numbers");
+
+    // Accept numbers separated by spaces and/or commas. Example: "1 2 3" or "1,2,3" or "1, 2, 3"
+    let numbers_vec: Vec<i32> = input
+        .trim()
+        .split(|c: char| c.is_whitespace() || c == ',')
+        .filter(|s| !s.is_empty())
+        .map(|s| s.trim().parse::<i32>())
+        .filter_map(|r| match r {
+            Ok(n) => Some(n),
+            Err(e) => {
+                eprintln!("Warning: couldn't parse '{}': {}", "<input>", e);
+                None
+            }
+        })
+        .collect();
+
+    if numbers_vec.is_empty() {
+        println!("No valid numbers were provided.");
+    } else {
+        let result = sum(&numbers_vec);
+        println!("The sum is {}", result);
+    }
 
 
 
@@ -49,16 +83,18 @@ fn main() {
     //     _ => println! ("I can't find a greeting, good bye"),
     // }
 
-    println!("Please enter a greeting: ");
-    let mut name= String::new();
-    io::stdin().read_line(&mut name).expect("Failed to read input");
+    // println!("Please enter a greeting: ");
+    // let mut name= String::new();
+    // io::stdin().read_line(&mut name).expect("Failed to read input");
 
-    //use of match expression to pattern against varible "name"
-    match name.trim(){
-        "Good bye" => println! ("Sorry to see you go."),
-        "Hello"=> println! ("Hi, Ruster, glad to meet you"),
-        _ => println! ("I can't find a greeting, good bye"),
-    }
+    // //use of match expression to pattern against varible "name"
+    // match name.trim(){
+    //     "Good bye" => println! ("Sorry to see you go."),
+    //     "Hello"=> println! ("Hi, Ruster, glad to meet you"),
+    //     _ => println! ("I can't find a greeting, good bye"),
+    // }
+
+
 
     
     
