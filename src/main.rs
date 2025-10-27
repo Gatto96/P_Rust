@@ -1,42 +1,63 @@
-use std::io;
+// use std::io;
 
-fn sum(numbers: &[i32])-> i32{
-    let mut result=0;
-    for number in numbers{
-        result+= number;
-    }
-    result
-}
+// fn sum(numbers: &[i32])-> i32{
+//     let mut result=0;
+//     for number in numbers{
+//         result+= number;
+//     }
+//     result
+// }
 
 
 fn main() {
-    println!("Hello, rusters!");
 
-    println!("Please enter a numbers to sum: ");
-    let mut input = String::new();
-    io::stdin().read_line(&mut input).expect("failed to read numbers");
+    //              LEARNING VARIABLES_AND_MUTABILITY:2.0rs
+    
+        let STARTING_MISSILES: i32=10;
+        let mut missiles: i32=STARTING_MISSILES;
+        let mut ready : i32=3;
+        missiles= STARTING_MISSILES - ready;
+        println!("Firing {} of my {} missiles... ", ready, STARTING_MISSILES);
+        println!("{} missiles left", missiles);
+        
+        let mut READY_AMOUNT: i32=STARTING_MISSILES-ready;
+        println!("Firing {} of my {} missiles... ", ready, READY_AMOUNT);
+        println!("{} missiles left", READY_AMOUNT - ready);
 
-    // Accept numbers separated by spaces and/or commas. Example: "1 2 3" or "1,2,3" or "1, 2, 3"
-    let numbers_vec: Vec<i32> = input
-        .trim()
-        .split(|c: char| c.is_whitespace() || c == ',')
-        .filter(|s| !s.is_empty())
-        .map(|s| s.trim().parse::<i32>())
-        .filter_map(|r| match r {
-            Ok(n) => Some(n),
-            Err(e) => {
-                eprintln!("Warning: couldn't parse '{}': {}", "<input>", e);
-                None
-            }
-        })
-        .collect();
 
-    if numbers_vec.is_empty() {
-        println!("No valid numbers were provided.");
-    } else {
-        let result = sum(&numbers_vec);
-        println!("The sum is {}", result);
-    }
+
+
+
+
+
+
+    // println!("Hello, rusters!");
+
+    // println!("Please enter a numbers to sum: ");
+    // let mut input = String::new();
+    // io::stdin().read_line(&mut input).expect("failed to read numbers");
+
+    // // Accept numbers separated by spaces and/or commas. Example: "1 2 3" or "1,2,3" or "1, 2, 3"
+    // let numbers_vec: Vec<i32> = input
+    //     .trim()
+    //     .split(|c: char| c.is_whitespace() || c == ',')
+    //     .filter(|s| !s.is_empty())
+    //     .map(|s| s.trim().parse::<i32>())
+    //     .filter_map(|r| match r {
+    //         Ok(n) => Some(n),
+    //         Err(e) => {
+    //             eprintln!("Warning: couldn't parse '{}': {}", "<input>", e);
+    //             None
+    //         }
+    //     })
+    //     .collect();
+
+    // if numbers_vec.is_empty() {
+    //     println!("No valid numbers were provided.");
+    // } else {
+    //     let result = sum(&numbers_vec);
+    //     println!("The sum is {}", result);
+    // }
 
 
 
